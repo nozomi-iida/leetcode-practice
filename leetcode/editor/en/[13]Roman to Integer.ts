@@ -67,7 +67,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-function romanToInt(s: string): number {
+function romanToInt(string: string): number {
   enum RomanNumerals {
     I = 1,
     V = 5,
@@ -77,12 +77,16 @@ function romanToInt(s: string): number {
     D = 500,
     M = 1000
   }
-  let int = 0
-  const stringArray = s.split("")
-  stringArray.forEach((el, index) => {
-    int += RomanNumerals[el]
-    if(stringArray[index - 1])
+  let number = 0
+
+  const stringArray = string.split("");
+  stringArray.forEach((el, idx) => {
+    if(RomanNumerals[el] < RomanNumerals[stringArray[idx + 1]]) {
+      number -= RomanNumerals[el]
+    } else {
+      number += RomanNumerals[el]
+    }
   })
-  return int;
+  return number
 };
 //leetcode submit region end(Prohibit modification and deletion)
